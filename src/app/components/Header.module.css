@@ -2,14 +2,16 @@
 .header {
   position: sticky;
   top: 0;
-  background-color: #fff;
-  border-bottom: 1px solid #ccc;
+  background-color: #172434;
+  /* border-bottom: 1px solid #ccc; */
   z-index: 1000;
   padding: 10px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+  box-shadow: 0 0px 20px #000;
+  height: 80px;
 }
 
 .logo h1 {
@@ -26,14 +28,15 @@
 
 .navLinks li {
   margin-right: 20px;
+  font-size: large;
 }
 
 .navLinks li a {
   text-decoration: none;
-  color: #333;
-  font-weight: 500;
+  color: #d3d3d3;
+  font-weight: 600;
 }
 
 .navLinks li a:hover {
-  color: #0070f3;
+  color: #5eaccc;
 }
