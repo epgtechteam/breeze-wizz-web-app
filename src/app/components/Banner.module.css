@@ -1,0 +1,32 @@
+.banner {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  min-height: 70%;
+  padding: 3rem;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #172434;
+}
+
+.bannerTitle {
+  font-size: 4rem;
+  font-weight: 800;
+}
+
+.bannerSubtitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 2rem;
+}
+
+.ctaButton {
+  background-color: #5eaccc;
+  padding: 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 10px;
+  color: #172434;
+}
