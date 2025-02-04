@@ -1,5 +1,5 @@
 // components/Banner.js
-import styles from "./Banner.module.css";
+import styles from "@components/banner/Banner.module.css";
 import React from "react";
 
 const Banner = () => {

@@ -1,23 +1,51 @@
 // app/offers/page.js
-import styles from "./page.module.css";
+"use client";
+import { IntuitWebAppExperience } from "@appfabric-plugin/appf-embedded-experiences/iframe";
+import { useEffect, useState } from "react";
+import IFRAME_INIT from "@/lib/constants/iframe";
+import IntuitWebAppExperienceSingleton from "@/lib/iframe/IntuitWidgetManagerSingleton";
 
-export default function OffersPage() {
-  return (
-    <div className="h-screen max-w-screen-xl m-auto text-center flex flex-col justify-center align-items-center">
-      <p className={styles.pageTitle}>
-        Here are the latest offers we have for you!
-      </p>
-      <div className={`${styles.widgetContainer} relative w-full`}>
-        <iframe
-          src="https://www.example.com" // URL to the dummy page you want to embed
-          title="Static Dummy Page"
-          className="w-full h-[500px] border-none"
-          loading="lazy"
-          frameBorder="0"
-          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        ></iframe>
-      </div>
-    </div>
-  );
+const renderWidget = async (widget: Readonly<IntuitWebAppExperience>) => {
+    try {
+        const widgetContainer = document.getElementById("widget-container");
+        if (!widgetContainer) {
+            throw new Error("Widget container not found");
+        }
+        await widget.render(widgetContainer);
+    } catch (error) {
+        throw new Error("Error rendering widget: " + error);
+    }
+};
+
+export default function Offers() {
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const loadWidget = async () => {
+            if (loading) {
+                try {
+                    const widgetInstance =
+                        await IntuitWebAppExperienceSingleton.getInstance();
+                    await renderWidget(widgetInstance);
+                } catch (error) {
+                    console.error("Error loading widget: ", error);
+                }
+                setLoading(false);
+            }
+        };
+        loadWidget();
+        return () => {
+            IntuitWebAppExperienceSingleton.getInstance().then(
+                (instance: IntuitWebAppExperience) => {
+                    instance.unmount();
+                }
+            );
+        };
+    }, []);
+
+    return (
+        <>
+            <div id="widget-container"></div>
+        </>
+    );
 }
