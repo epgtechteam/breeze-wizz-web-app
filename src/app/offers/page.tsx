@@ -1,7 +1,9 @@
 // app/offers/page.js
+"use client"
 import styles from "./page.module.css";
 
 export default function OffersPage() {
+  console.log("✅ Rendered Offer on the SERVER");
   return (
     <div className="h-screen max-w-screen-xl m-auto text-center flex flex-col justify-center align-items-center">
       <p className={styles.pageTitle}>
