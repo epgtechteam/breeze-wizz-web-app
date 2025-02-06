@@ -4,24 +4,29 @@ import styles from "./page.module.css";
 import WidgetContainer from "@/components/WidgetContainer";
 
 async function getBearerToken() {
-  console.log("BASE_URL");
-  console.log(process.env.BASE_URL);
-  console.log("ENV");
-  console.log(process.env);
-  const tokenResponse = await fetch(
-    `https://${process.env.VERCEL_URL}/api/token`
-  );
-  // const tokenResponse = await fetch(
-  //   `${process.env.BASE_URL}/api/token`
-  // );
-  const { token } = await tokenResponse.json();
-  await new Promise((resolve) => {
-    // Added 3 seconds to test the server side rendering and display of loader
-    setTimeout(() => {
-      resolve("");
-    }, 3000);
-  });
-  return token;
+  try {
+    console.log("BASE_URL");
+    console.log(process.env.BASE_URL);
+    console.log("ENV");
+    console.log(process.env);
+    const tokenResponse = await fetch(
+      `${process.env.VERCEL_URL}/api/token`
+    );
+    // const tokenResponse = await fetch(
+    //   `${process.env.BASE_URL}/api/token`
+    // );
+    const { token } = await tokenResponse.json();
+    await new Promise((resolve) => {
+      // Added 3 seconds to test the server side rendering and display of loader
+      setTimeout(() => {
+        resolve("");
+      }, 3000);
+    });
+    return token;
+  } catch (error) {
+    console.log("AM Error");
+    console.log(JSON.stringify(error));
+  }
   return "test";
 }
 
