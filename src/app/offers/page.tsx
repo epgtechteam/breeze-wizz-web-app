@@ -9,7 +9,7 @@ async function getBearerToken() {
   console.log("ENV");
   console.log(process.env);
   const tokenResponse = await fetch(
-    `${process.env.NEXT_PUBLIC_VERCEL_BRANCH_URL}/api/token`
+    `https://${process.env.NEXT_PUBLIC_VERCEL_BRANCH_URL}/api/token`
   );
   const { token } = await tokenResponse.json();
   await new Promise((resolve) => {
