@@ -1,39 +1,60 @@
 // app/offers/page.js
 // import { API_BASE_URL } from "@/constants/api";
+
 import styles from "./page.module.css";
 import WidgetContainer from "@/components/WidgetContainer";
 
 async function getBearerToken() {
   try {
-    console.log("BASE_URL");
-    console.log(process.env.BASE_URL);
-    console.log("ENV");
-    console.log(process.env);
-    const tokenResponse = await fetch(
-      `https://${process.env.VERCEL_URL}/api/token`
+    const clientID = process.env.CLIENT_ID;
+    const clientSecret = process.env.CLIENT_SECRET;
+
+    if (!clientID || !clientSecret) {
+      return { error: "Missing credentials", status: 500 };
+    }
+
+    const credentials = `${clientID}:${clientSecret}`;
+    const body = new URLSearchParams();
+    body.append("grant_type", "client_credentials");
+    body.append("scope", "com.intuit.quickbooks.accounting");
+
+    const options = {
+      headers: {
+        Authorization: "Basic " + Buffer.from(credentials).toString("base64"),
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body,
+      method: "POST",
+    };
+
+    const response = await fetch(
+      `https://oauth-sandbox.platform.intuit.com/oauth2/v1/tokens/bearer`,
+      options
     );
-    // const tokenResponse = await fetch(
-    //   `${process.env.BASE_URL}/api/token`
-    // );
-    const { token } = await tokenResponse.json();
+
+    if (!response.ok) {
+      return { error: "Failed to fetch token", status: 500 };
+    }
+
+    const data = await response.json();
     await new Promise((resolve) => {
       // Added 3 seconds to test the server side rendering and display of loader
       setTimeout(() => {
         resolve("");
-      }, 3000);
+      }, 5000);
     });
-    return token;
+    return { status: 200, token: data.access_token };
   } catch (error) {
-    console.log("AM Error");
     console.log(JSON.stringify(error));
+    return { error: "Failed to fetch token", status: 500 };
   }
-  return "test";
 }
 
 export default async function OffersPage() {
-  const token = await getBearerToken();
+  const { status, token } = await getBearerToken();
+  console.log(token);
 
-  if (token) {
+  if (status === 200 && token) {
     return (
       <div className="h-screen m-auto text-center p-10 pt-64 flex flex-col justify-center align-items-center">
         <p className={styles.pageTitle}>

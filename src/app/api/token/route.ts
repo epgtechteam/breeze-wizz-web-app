@@ -1,4 +1,5 @@
 // app/api/token/route.ts
+// THIS IS THROWING ERRORS, hence falling back to plain JS function inside of the offers page
 import { NextResponse } from "next/server";
 
 export async function GET() {
