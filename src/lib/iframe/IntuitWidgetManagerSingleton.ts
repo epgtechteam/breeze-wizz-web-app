@@ -1,11 +1,9 @@
 import { IntuitWebAppExperience } from "@appfabric-plugin/appf-embedded-experiences/iframe";
 
-// TODO: ADD renderWidget
 class IntuitWebAppExperienceSingleton {
-    /* eslint-disable @typescript-eslint/no-unused-vars */
+     
     private static intuitWebAppExperienceInstance: IntuitWebAppExperience | null = null;
     private static iframe: HTMLIFrameElement | null = null;
-    private static isWidgetMounted = false;
 
     private constructor() {
     }
@@ -39,16 +37,13 @@ class IntuitWebAppExperienceSingleton {
     public static getInstanceIframe(): HTMLIFrameElement | null {
         return IntuitWebAppExperienceSingleton.iframe;
     }
-    
-    public static getIsWidgetMounted(): boolean {
-        return IntuitWebAppExperienceSingleton.isWidgetMounted;
-    }
 
     public static async getInstance(): Promise<IntuitWebAppExperience> {
         if (!IntuitWebAppExperienceSingleton.intuitWebAppExperienceInstance) {
             IntuitWebAppExperienceSingleton.intuitWebAppExperienceInstance = new IntuitWebAppExperience();
             await IntuitWebAppExperienceSingleton.initializeInstance(IntuitWebAppExperienceSingleton.intuitWebAppExperienceInstance);
         }
+
         return IntuitWebAppExperienceSingleton.intuitWebAppExperienceInstance;
     }
 
@@ -63,7 +58,7 @@ class IntuitWebAppExperienceSingleton {
         }
 
         try {
-                console.warn(
+                console.info(
                     `class=IntuitWebAppExperienceSingleton function=renderInstance, message="Rendering widget" instance=`,
                     instance
                 );
@@ -74,17 +69,12 @@ class IntuitWebAppExperienceSingleton {
                     console.warn(`class=IntuitWebAppExperienceSingleton function=renderInstance, containerId=${containerId}, message="Could not find container", widgetContainer=`, widgetContainer)
                     return null
                 }
-
-                // TODO: Find where widget is marked as mounted
-                IntuitWebAppExperienceSingleton.iframe = await instance.render(widgetContainer, {
-                    onload: () => {
-                        IntuitWebAppExperienceSingleton.isWidgetMounted = true;
-                    }
-                })
+                
+                IntuitWebAppExperienceSingleton.iframe = await instance.render(widgetContainer)
 
                 return IntuitWebAppExperienceSingleton.iframe;
         } catch (error) {
-            console.error(
+            console.warn(
                 error
             );
         }
@@ -96,21 +86,14 @@ class IntuitWebAppExperienceSingleton {
         const instance = IntuitWebAppExperienceSingleton.intuitWebAppExperienceInstance;
 
         if (!instance) {
-            console.error(
-                `class=IntuitWebAppExperienceSingleton function=unmountInstance, message="Wiget instance is not created yet", instanc=`
+            console.warn(
+                `class=IntuitWebAppExperienceSingleton function=unmountInstance, message="Wiget instance is not created yet", instance=`, instance
             );
             return;
         }
 
         try {
-            if (instance) {
-                console.warn(
-                    `class=IntuitWebAppExperienceSingleton function=unmountInstance, isWidgetMounted=${this.isWidgetMounted} message="Unmounting widget"`,
-                    instance
-                );
-                await instance.unmount();
-                IntuitWebAppExperienceSingleton.isWidgetMounted = false;
-            }
+            await instance.unmount();
         } catch (error) {
             console.error(
                 error

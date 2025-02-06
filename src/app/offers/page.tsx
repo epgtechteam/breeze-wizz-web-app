@@ -1,35 +1,32 @@
 // app/offers/page.js
 "use client";
-import { IntuitWebAppExperience } from "@appfabric-plugin/appf-embedded-experiences/iframe";
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import IntuitWebAppExperienceSingleton from "@/lib/iframe/IntuitWidgetManagerSingleton";
 
 export default function Offers() {
-    const [loading, setLoading] = useState(true);
+    const containerId = "widget-container";
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        console.log("hello world");
         const loadWidget = async () => {
-            if (loading) {
-                const widgetInstance =
-                    await IntuitWebAppExperienceSingleton.getInstance();
-                await IntuitWebAppExperienceSingleton.renderInstance(
-                    "widget-container"
-                );
-                setLoading(false);
-            }
+            await IntuitWebAppExperienceSingleton.getInstance();
+            await IntuitWebAppExperienceSingleton.renderInstance(containerId);
+            setIsLoading(false);
         };
-        loadWidget();
+
+        if (isLoading) loadWidget();
+
         return () => {
-            if (IntuitWebAppExperienceSingleton.getIsWidgetMounted()) {
+            if (!isLoading) {
                 IntuitWebAppExperienceSingleton.unmountInstance();
             }
         };
-    }, []);
+    }, [isLoading]);
 
     return (
         <>
-            <div id="widget-container"></div>
+            <div id={containerId}></div>
+            {isLoading && <h1>Loading...</h1>}
         </>
     );
 }
