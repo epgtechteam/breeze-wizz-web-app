@@ -1,11 +1,11 @@
 // app/offers/page.js
-import { API_BASE_URL } from "@/constants/api";
+// import { API_BASE_URL } from "@/constants/api";
 import styles from "./page.module.css";
 import WidgetContainer from "@/components/WidgetContainer";
 
 async function getBearerToken() {
   const tokenResponse = await fetch(
-    `${API_BASE_URL[process.env.NODE_ENV]}/api/token`
+    `${process.env.BASE_URL}/api/token`
   );
   const { token } = await tokenResponse.json();
   await new Promise((resolve) => {
