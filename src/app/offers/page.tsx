@@ -9,8 +9,11 @@ async function getBearerToken() {
   console.log("ENV");
   console.log(process.env);
   const tokenResponse = await fetch(
-    `https://${process.env.NEXT_PUBLIC_VERCEL_BRANCH_URL}/api/token`
+    `https://${process.env.VERCEL_URL}/api/token`
   );
+  // const tokenResponse = await fetch(
+  //   `${process.env.BASE_URL}/api/token`
+  // );
   const { token } = await tokenResponse.json();
   await new Promise((resolve) => {
     // Added 3 seconds to test the server side rendering and display of loader
