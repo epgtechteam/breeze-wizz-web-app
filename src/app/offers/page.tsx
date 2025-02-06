@@ -10,7 +10,7 @@ async function getBearerToken() {
     console.log("ENV");
     console.log(process.env);
     const tokenResponse = await fetch(
-      `${process.env.VERCEL_URL}/api/token`
+      `https://${process.env.VERCEL_URL}/api/token`
     );
     // const tokenResponse = await fetch(
     //   `${process.env.BASE_URL}/api/token`
