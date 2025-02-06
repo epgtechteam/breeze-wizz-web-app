@@ -2,6 +2,7 @@
 import { API_BASE_URL } from "@/constants/api";
 import styles from "./page.module.css";
 import WidgetContainer from "@/components/WidgetContainer";
+
 async function getBearerToken() {
   const tokenResponse = await fetch(
     `${API_BASE_URL[process.env.NODE_ENV]}/api/token`
@@ -17,9 +18,7 @@ async function getBearerToken() {
 }
 
 export default async function OffersPage() {
-  console.log("✅ Rendered Offer on the SERVER");
   const token = await getBearerToken();
-  console.log(token);
 
   if (token) {
     return (
