@@ -4,9 +4,11 @@ import styles from "./page.module.css";
 import WidgetContainer from "@/components/WidgetContainer";
 
 async function getBearerToken() {
-  // const tokenResponse = await fetch(
-  //   `${process.env.BASE_URL}/api/token`
-  // );
+  console.log("BASE_URL");
+  console.log(process.env.BASE_URL);
+  console.log("ENV");
+  console.log(process.env);
+  // const tokenResponse = await fetch(`${process.env.BASE_URL}/api/token`);
   // const { token } = await tokenResponse.json();
   // await new Promise((resolve) => {
   //   // Added 3 seconds to test the server side rendering and display of loader
@@ -15,7 +17,7 @@ async function getBearerToken() {
   //   }, 3000);
   // });
   // return token;
-  return "test"
+  return "test";
 }
 
 export default async function OffersPage() {
