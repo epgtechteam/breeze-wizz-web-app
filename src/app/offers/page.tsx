@@ -8,7 +8,7 @@ async function getBearerToken() {
   console.log(process.env.BASE_URL);
   console.log("ENV");
   console.log(process.env);
-  const tokenResponse = await fetch(`/api/token`);
+  const tokenResponse = await fetch(`https://breeze-wizz-web-4p09wt6la-epg-techs-projects.vercel.app/api/token`);
   const { token } = await tokenResponse.json();
   await new Promise((resolve) => {
     // Added 3 seconds to test the server side rendering and display of loader
