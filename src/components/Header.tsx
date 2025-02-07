@@ -1,7 +1,7 @@
 // components/Header.js
 import Link from "next/link";
 import Image from "next/image";
-import logo from "../../../public/logo-banner.png";
+import logo from "../../public/logo-banner.png";
 import styles from "./Header.module.css";
 
 const Header = () => {

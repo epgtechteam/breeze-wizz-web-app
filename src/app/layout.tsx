@@ -1,6 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Header from "./components/Header";
+import Header from "../components/Header";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -23,7 +23,6 @@ export default function RootLayout({
                 <meta charSet="utf-8" />
                 <title>Breeze Wizz</title>
                 <script
-                    async
                     type="text/javascript"
                     src="https://appf-web-exp-integration-e2e.app.intuit.com/v1/appfabric-web-integration/iframe/script/iife/appf-web-exp-integration-webapp"
                 />
