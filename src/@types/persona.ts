@@ -8,11 +8,12 @@ export type LoanPurpose =
   | "OTHER";
 
 export type Persona =
-  | "B2C_PERSONAL_LOAN"
-  | "B2C_CREDIT_CARD"
-  | "B2C_LIGHTBOX_EVERYWHERE"
-  | "B2B_LINE_OF_CREDIT"
-  | "B2B_BUSINESS_CREDIT_CARD";
+  | "B2C_CK_PERSONAL_LOAN"
+  | "B2C_CK_CREDIT_CARD"
+  | "B2B_QBO_LINE_OF_CREDIT"
+  | "B2B_QBO_TERM_LOAN"
+  | "B2B_NONQBO_CREDIT_CARD"
+  | "B2B_NONQBO_BUSINESS_LOAN";
 
 export type SuccessType = "SUCCESS" | "SUCCESS_WITH_WARNING";
 export type ErrorType =
@@ -28,7 +29,7 @@ export type CommunicationEventType =
   | ErrorType;
 
 export type WidgetPersonaDataProps = {
-  data: {
+  data?: {
     partnerInfo: {
       id: string; // ID to identify the partner (ISV)
       name: string;

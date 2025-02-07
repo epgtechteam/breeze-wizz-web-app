@@ -1,0 +1,24 @@
+.header {
+  font-size: 2rem;
+  font-weight: 600;
+  padding: 2rem;
+}
+
+.stepTitle {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+
+.stepSubtitle {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #393a3d;
+}
