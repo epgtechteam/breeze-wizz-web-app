@@ -12,8 +12,6 @@ async function getBearerToken() {
       return { error: "Missing credentials", status: 500 };
     }
 
-    
-
     // const credentials = `${clientID}:${clientSecret}`;
     const body = new URLSearchParams();
     body.append("grant_type", "client_credentials");
