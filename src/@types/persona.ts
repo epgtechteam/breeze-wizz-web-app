@@ -29,7 +29,7 @@ export type CommunicationEventType =
   | ErrorType;
 
 export type WidgetPersonaDataProps = {
-  data: {
+  data?: {
     partnerInfo: {
       id: string; // ID to identify the partner (ISV)
       name: string;
