@@ -23,7 +23,7 @@ const STEPS = [
 ];
 export default function ApplicationSteps() {
   return (
-    <div className="pt-40 pb-60 m-auto">
+    <div className="pt-10 mt-10 pb-60 m-auto">
       <p className={styles.header}>Easy apply in 3 steps</p>
       <div className="flex mt-20">
         {STEPS.map((step, index) => (
