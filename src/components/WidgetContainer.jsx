@@ -2,15 +2,13 @@
 import styles from "@/app/offers/page.module.css";
 import { useEffect, useState } from "react";
 
-const renderWidget = async (widget: {
-    render: (container: HTMLElement) => Promise<HTMLIFrameElement>;
-}) => {
+const renderWidget = async (widget) => {
     try {
         const widgetContainer = document.getElementById("widget-container");
         if (!widgetContainer) {
             throw new Error("Widget container not found");
         }
-        await widget.render(widgetContainer);
+        await widget?.render(widgetContainer);
     } catch (error) {
         throw new Error("Error rendering widget: " + error);
     }
