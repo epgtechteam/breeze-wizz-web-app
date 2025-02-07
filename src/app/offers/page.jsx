@@ -3,34 +3,6 @@
 import styles from "./page.module.css";
 import { useEffect, useState } from "react";
 
-const initWidget = async (widget) => {
-    try {
-        return await widget.init({
-            namespace: "embedded-financing",
-            url: new URL(
-                "https://financing-e2e.app.intuit.com/embedded-financing"
-            ),
-            props: {
-                financingApplicationInfo: {
-                    loanAmount: 10000,
-                    loanPurpose: "HOME_IMPROVEMENT",
-                },
-                consumerInfo: {
-                    email: "csepdteam@gmail.com",
-                },
-            },
-            style: {
-                height: "100%",
-                width: "100%",
-                "border-color": "red",
-            },
-        });
-        
-    } catch (error) {
-        throw new Error("Error initializing widget: " + error);
-    }
-};
-
 const renderWidget = async (widget) => {
     try {
         const widgetContainer = document.getElementById("widget-container");
