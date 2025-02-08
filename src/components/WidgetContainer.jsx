@@ -78,7 +78,7 @@ export default function OffersPage({
           <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500 border-solid"></div>
         </div>
       )}
-      <div id={widgetContainerId} className={`h-[700] relative w-full`}></div>
+      <div id={widgetContainerId} className={`h-[700px] relative w-full`}></div>
     </div>
   );
 }
