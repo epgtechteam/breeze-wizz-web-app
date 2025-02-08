@@ -8,11 +8,12 @@ export type LoanPurpose =
   | "OTHER";
 
 export type Persona =
-  | "B2C_PERSONAL_LOAN"
-  | "B2C_CREDIT_CARD"
-  | "B2C_LIGHTBOX_EVERYWHERE"
-  | "B2B_LINE_OF_CREDIT"
-  | "B2B_BUSINESS_CREDIT_CARD";
+  | "B2C_CK_PERSONAL_LOAN"
+  | "B2C_CK_CREDIT_CARD"
+  | "B2B_QBO_LINE_OF_CREDIT"
+  | "B2B_QBO_TERM_LOAN"
+  | "B2B_NONQBO_CREDIT_CARD"
+  | "B2B_NONQBO_BUSINESS_LOAN";
 
 export type SuccessType = "SUCCESS" | "SUCCESS_WITH_WARNING";
 export type ErrorType =
@@ -45,6 +46,8 @@ export type WidgetPersonaDataProps = {
       email: string; // Recipient Email to which Offers will be fetched
       phone?: string; // Recipient Phone to which Offers will be fetched
       address?: {
+        addressLine1?: string;
+        addressLine2?: string;
         street?: string;
         city?: string;
         state: string;
@@ -55,14 +58,14 @@ export type WidgetPersonaDataProps = {
     businessInfo: {
       // Business info providing the service
       id?: string;
-      taxIdentifcationNumber?: string;
       logoUrl?: string;
       businessName: string;
       phone?: string;
       industry: string;
       type: string;
       address?: {
-        street?: string;
+        addressLine1?: string;
+        addressLine2?: string;
         city?: string;
         state: string;
         postalCode: string;
@@ -76,7 +79,8 @@ export type WidgetPersonaDataProps = {
         email: string;
         phone?: string;
         address?: {
-          street?: string;
+          addressLine1?: string;
+          addressLine2?: string;
           city?: string;
           state: string;
           postalCode: string;
@@ -103,4 +107,13 @@ export type WidgetEventProps = {
 };
 
 export type IntuitWidgetProps = WidgetPersonaDataProps &
-  WidgetEventProps & { bearerToken: string };
+  WidgetEventProps & {
+    bearerToken: string;
+    offerType: string;
+    env: string; // E2E or PRD
+    headerInfo: {
+      // This object will be passed in headers for tracking
+      "X-<isv>-CorrelationId": string; // correlation Id to track the event in source system
+      "X-Merchant-Id"?: string;
+    };
+  };
