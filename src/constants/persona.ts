@@ -84,15 +84,14 @@ export const LOAN_PURPOSE_TYPES_DROPDOWN = [
   },
 ];
 
-const PERSONA_WIDGET_DATA_PROPS: WidgetPersonaDataProps = {
-  offerType: "",
+export const PERSONA_WIDGET_DATA_PROPS: WidgetPersonaDataProps = {
   data: {
     partnerInfo: {
       id: "Test_Partner_01", // ID to identify the partner (ISV)
       name: "Test Partner",
     },
     financingApplicationInfo: {
-      loanAmount: 10000, // Amount for which the offers will be fetched
+      loanAmount: "10000", // Amount for which the offers will be fetched
       loanPurpose: LOAN_PURPOSE.HOME_IMPROVEMENT,
     },
     consumerInfo: {
@@ -147,39 +146,3 @@ const PERSONA_WIDGET_DATA_PROPS: WidgetPersonaDataProps = {
     },
   },
 };
-
-export const PERSONA_WIDGET_PROPS = [
-  {
-    key: "B2C_CK_PERSONAL_LOAN",
-    value: { ...PERSONA_WIDGET_DATA_PROPS, offerType: "B2C_CK_PERSONAL_LOAN" },
-  },
-  {
-    key: "B2C_CK_CREDIT_CARD",
-    value: { ...PERSONA_WIDGET_DATA_PROPS, offerType: "B2C_CK_CREDIT_CARD" },
-  },
-  {
-    key: "B2B_QBO_LINE_OF_CREDIT",
-    value: {
-      ...PERSONA_WIDGET_DATA_PROPS,
-      offerType: "B2B_QBO_LINE_OF_CREDIT",
-    },
-  },
-  {
-    key: "B2B_QBO_TERM_LOAN",
-    value: { ...PERSONA_WIDGET_DATA_PROPS, offerType: "B2B_QBO_TERM_LOAN" },
-  },
-  {
-    key: "B2B_NONQBO_CREDIT_CARD",
-    value: {
-      ...PERSONA_WIDGET_DATA_PROPS,
-      offerType: "B2B_NONQBO_CREDIT_CARD",
-    },
-  },
-  {
-    key: "B2B_NONQBO_BUSINESS_LOAN",
-    value: {
-      ...PERSONA_WIDGET_DATA_PROPS,
-      offerType: "B2B_NONQBO_BUSINESS_LOAN",
-    },
-  },
-];

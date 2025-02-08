@@ -10,7 +10,8 @@ interface Option {
 interface DropdownProps {
   label: string;
   options: Option[];
-  onSelect: (val: string) => void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onSelect: (val: any) => void;
 }
 const DropdownWithLabel: React.FC<DropdownProps> = ({
   label,

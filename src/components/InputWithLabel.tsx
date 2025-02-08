@@ -5,7 +5,7 @@ interface InputWithLabelProps {
   label: string;
   placeholder?: string;
   type?: string;
-  onChange: (val: string | number) => void;
+  onChange: (val: string) => void;
 }
 
 const InputWithLabel: React.FC<InputWithLabelProps> = ({

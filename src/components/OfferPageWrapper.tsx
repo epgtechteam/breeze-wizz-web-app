@@ -3,7 +3,6 @@
 import {
   PERSONA_TYPES_DROPDOWN,
   LOAN_PURPOSE_TYPES_DROPDOWN,
-  PERSONA_WIDGET_PROPS,
 } from "@/constants/persona";
 import DropdownWithLabel from "./DropdownWithLabel";
 import InputWithLabel from "./InputWithLabel";
@@ -11,21 +10,27 @@ import WidgetContainer from "./WidgetContainer";
 import { useState } from "react";
 import ApplicationSteps from "./ApplicationSteps";
 import ActionButton from "./ActionButton";
-import { WidgetPersonaDataProps } from "@/@types/persona";
+import { LoanPurpose, WidgetPersonaDataProps } from "@/@types/persona";
+import { getPIIPropsBasedOnOfferType } from "@/utils/offerUtils";
 
 export default function OfferPageWrapper({ token }: { token: string }) {
   const [isWidgetLoaded, setIsWidgetLoaded] = useState(false);
   const [shouldLoadWidget, setShouldLoadWidget] = useState(false);
-  const [persona, setPersona] = useState<string>("");
-  const [loanPurpose, setLoanPurpose] = useState<string>("");
-  const [amount, setAmount] = useState<string | number>("");
+  const [offerType, setOfferType] = useState<string>("");
+  const [loanPurpose, setLoanPurpose] = useState<LoanPurpose>();
+  const [amount, setAmount] = useState<string>("");
   const [widgetDataProps, setWidgetDataProps] =
     useState<WidgetPersonaDataProps>();
 
   const validateInputs = () => {
-    if (persona && loanPurpose && amount) {
-      const data = PERSONA_WIDGET_PROPS.find((a) => a.key === persona);
-      setWidgetDataProps(data?.value);
+    if (offerType && loanPurpose && amount) {
+      // this triggers a rerender and the widget is reloaded
+      const piiData = getPIIPropsBasedOnOfferType(
+        offerType,
+        amount,
+        loanPurpose
+      );
+      setWidgetDataProps(piiData);
       return true;
     }
     return false;
@@ -34,14 +39,16 @@ export default function OfferPageWrapper({ token }: { token: string }) {
     <div className="h-screen m-auto text-center p-10 flex flex-col align-items-center">
       <div className="flex flex-wrap items-end">
         <DropdownWithLabel
-          label="Select Persona"
+          label="Select Offer Type"
           options={PERSONA_TYPES_DROPDOWN}
-          onSelect={(val) => setPersona(val)}
+          onSelect={(val) => {
+            setOfferType(val);
+          }}
         />
         <DropdownWithLabel
           label="Loan Purpose"
           options={LOAN_PURPOSE_TYPES_DROPDOWN}
-          onSelect={(val) => setLoanPurpose(val)}
+          onSelect={(val: LoanPurpose) => setLoanPurpose(val)}
         />
         <InputWithLabel
           label="Request Amount"
@@ -61,10 +68,8 @@ export default function OfferPageWrapper({ token }: { token: string }) {
           <WidgetContainer
             onWidgetLoad={() => setIsWidgetLoaded(true)}
             token={token}
-            persona={persona}
-            loanPurpose={loanPurpose}
-            amount={amount}
             widgetDataProps={widgetDataProps}
+            offerType={offerType}
           />
         )}
       </div>

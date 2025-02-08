@@ -29,14 +29,13 @@ export type CommunicationEventType =
   | ErrorType;
 
 export type WidgetPersonaDataProps = {
-  offerType: string;
-  data?: {
+  data: {
     partnerInfo: {
       id: string; // ID to identify the partner (ISV)
       name: string;
     };
     financingApplicationInfo: {
-      loanAmount: number; // Amount for which the offers will be fetched
+      loanAmount: string; // Amount for which the offers will be fetched
       loanPurpose: LoanPurpose;
     };
     consumerInfo: {
@@ -105,4 +104,4 @@ export type WidgetEventProps = {
 };
 
 export type IntuitWidgetProps = WidgetPersonaDataProps &
-  WidgetEventProps & { bearerToken: string };
+  WidgetEventProps & { bearerToken: string; offerType: string };

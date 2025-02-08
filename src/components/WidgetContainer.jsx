@@ -1,5 +1,4 @@
 "use client";
-import styles from "./WidgetContainer.module.css";
 import { useEffect, useState } from "react";
 
 const renderWidget = async (widget) => {
@@ -16,19 +15,15 @@ const renderWidget = async (widget) => {
 export default function OffersPage({
   onWidgetLoad,
   token,
-  persona,
-  loanPurpose,
-  amount,
   widgetDataProps,
+  offerType,
 }) {
   const widgetContainerId = "widget-container";
   const widget = globalThis?.IntuitWebAppExperience;
   const [loading, setLoading] = useState(true);
-  const [dummy, setDummy] = useState(true);
-  //   const [isLoading, setIsLoading] = useState(true); // Track loading state
 
   const handleIframeLoad = () => {
-    // setIsLoading(false); // Hide loader when iframe is loaded
+    setLoading(false); // Hide loader when iframe is loaded
     onWidgetLoad(); // Trigger any external callback if needed
   };
 
@@ -43,28 +38,34 @@ export default function OffersPage({
   const onEvent = (type, message, additionalInfo) => {
     console.log(type, message, additionalInfo);
   };
-  const intuitWidgetProps = {
+  const widgetProps = {
     onSuccess,
     onError,
     onEvent,
     bearerToken: token,
+    env: process.env.NODE_ENV === "production" ? "PRD" : "E2E",
+    headerInfo: {
+      "X-BreezeWizz-CorrelationId": "123456789",
+      "X-Merchant-Id": "123",
+    },
+    offerType,
+    data: widgetDataProps.data,
   };
-  //   console.log(intuitWidgetProps);
+
+  const loadWidget = async () => {
+    setLoading(true);
+    try {
+      await renderWidget(widget);
+      await widget.updateProps(widgetProps);
+    } catch (error) {
+      console.error("Error loading widget: ", error);
+    }
+    setTimeout(() => {
+      handleIframeLoad();
+    }, 1000);
+  };
 
   useEffect(() => {
-    setLoading(true);
-    const loadWidget = async () => {
-      try {
-        await renderWidget(widget);
-        await widget.updateProps(widgetDataProps);
-      } catch (error) {
-        console.error("Error loading widget: ", error);
-      }
-      setTimeout(() => {
-        setLoading(false);
-        handleIframeLoad();
-      }, 1000);
-    };
     loadWidget();
     return () => {
       widget.unmount();
@@ -78,7 +79,7 @@ export default function OffersPage({
           <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500 border-solid"></div>
         </div>
       )}
-      <div id={widgetContainerId} className={`h-[700px] relative w-full`}></div>
+      <div id={widgetContainerId} className={`h-[700px] flex flex-col w-full`}></div>
     </div>
   );
 }
