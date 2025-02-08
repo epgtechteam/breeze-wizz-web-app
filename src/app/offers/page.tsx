@@ -40,7 +40,7 @@ async function getBearerToken() {
       // Added 3 seconds to test the server side rendering and display of loader
       setTimeout(() => {
         resolve("");
-      }, 5000);
+      }, 1000);
     });
     return { status: 200, token: data.access_token };
   } catch (error) {

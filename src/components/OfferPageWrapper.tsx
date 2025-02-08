@@ -28,19 +28,18 @@ export default function OfferPageWrapper({ token }: { token: string }) {
       setWidgetDataProps(data?.value);
       return true;
     }
-
     return false;
   };
   return (
     <div className="h-screen m-auto text-center p-10 flex flex-col align-items-center">
       <div className="flex flex-wrap items-end">
         <DropdownWithLabel
-          label={"Select Persona"}
+          label="Select Persona"
           options={PERSONA_TYPES_DROPDOWN}
           onSelect={(val) => setPersona(val)}
         />
         <DropdownWithLabel
-          label={"Loan Purpose"}
+          label="Loan Purpose"
           options={LOAN_PURPOSE_TYPES_DROPDOWN}
           onSelect={(val) => setLoanPurpose(val)}
         />
@@ -52,17 +51,12 @@ export default function OfferPageWrapper({ token }: { token: string }) {
         <ActionButton
           onClick={() => {
             if (validateInputs()) {
-              console.log(persona);
-              console.log(loanPurpose);
-              console.log(amount);
               setShouldLoadWidget(true);
             }
           }}
         />
       </div>
-      <div
-        className={`h-min-[500px] border border-gray-300 relative w-full mt-10`}
-      >
+      <div className={`relative w-full mt-10`}>
         {shouldLoadWidget && (
           <WidgetContainer
             onWidgetLoad={() => setIsWidgetLoaded(true)}
