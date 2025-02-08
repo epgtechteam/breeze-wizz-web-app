@@ -1,0 +1,12 @@
+.pageTitle {
+  font-size: 3rem;
+  font-weight: 600;
+  padding-top: 1rem;
+}
+
+.widgetContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
