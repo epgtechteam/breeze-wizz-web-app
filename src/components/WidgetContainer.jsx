@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const renderWidget = async (widget) => {
   try {
@@ -12,12 +12,8 @@ const renderWidget = async (widget) => {
     throw new Error("Error rendering widget: " + error);
   }
 };
-export default function OffersPage({
-  onWidgetLoad,
-  token,
-  widgetDataProps,
-  offerType,
-}) {
+
+function WidgetContainer({ onWidgetLoad, token, widgetDataProps, offerType }) {
   const widgetContainerId = "widget-container";
   const widget = globalThis?.IntuitWebAppExperience;
   const [loading, setLoading] = useState(true);
@@ -79,7 +75,12 @@ export default function OffersPage({
           <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500 border-solid"></div>
         </div>
       )}
-      <div id={widgetContainerId} className={`h-[700px] flex flex-col w-full`}></div>
+      <div
+        id={widgetContainerId}
+        className={`h-[700px] flex flex-col w-full`}
+      ></div>
     </div>
   );
 }
+
+export default React.memo(WidgetContainer);

@@ -3,7 +3,7 @@ import { PERSONA_TYPES, PERSONA_WIDGET_DATA_PROPS } from "@/constants/persona";
 
 export const getPIIPropsBasedOnOfferType = (
   offerType: string,
-  loanAmount: string,
+  loanAmount: number,
   loanPurpose: LoanPurpose
 ) => {
   const props = { ...PERSONA_WIDGET_DATA_PROPS };

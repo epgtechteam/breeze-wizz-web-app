@@ -18,7 +18,7 @@ export default function OfferPageWrapper({ token }: { token: string }) {
   const [shouldLoadWidget, setShouldLoadWidget] = useState(false);
   const [offerType, setOfferType] = useState<string>("");
   const [loanPurpose, setLoanPurpose] = useState<LoanPurpose>();
-  const [amount, setAmount] = useState<string>("");
+  const [amount, setAmount] = useState<number>(0);
   const [widgetDataProps, setWidgetDataProps] =
     useState<WidgetPersonaDataProps>();
 
@@ -53,7 +53,6 @@ export default function OfferPageWrapper({ token }: { token: string }) {
         <InputWithLabel
           label="Request Amount"
           onChange={(val) => setAmount(val)}
-          type="number"
         />
         <ActionButton
           onClick={() => {

@@ -91,7 +91,7 @@ export const PERSONA_WIDGET_DATA_PROPS: WidgetPersonaDataProps = {
       name: "Test Partner",
     },
     financingApplicationInfo: {
-      loanAmount: "10000", // Amount for which the offers will be fetched
+      loanAmount: 10000, // Amount for which the offers will be fetched
       loanPurpose: LOAN_PURPOSE.HOME_IMPROVEMENT,
     },
     consumerInfo: {
@@ -103,7 +103,8 @@ export const PERSONA_WIDGET_DATA_PROPS: WidgetPersonaDataProps = {
       phone: "1231231234", //optional // Recipient Phone to which Offers will be fetched
       address: {
         // optional
-        street: "S Livermore Ave", // optional
+        addressLine1: "S Livermore Ave",
+        addressLine2: "",
         city: "Livermore", // optional
         state: "CA",
         postalCode: "94550",
@@ -113,7 +114,6 @@ export const PERSONA_WIDGET_DATA_PROPS: WidgetPersonaDataProps = {
     businessInfo: {
       // Business info providing the service
       id: "Test_Business_01", // optional
-      taxIdentifcationNumber: "TIN11223344", // optional
       logoUrl: "https://www.google.com", // optional
       businessName: "Rocket Associates & Co.",
       phone: "1234567890", // optional
@@ -121,7 +121,8 @@ export const PERSONA_WIDGET_DATA_PROPS: WidgetPersonaDataProps = {
       type: "Small Business",
       address: {
         // optional
-        street: "1500 Warburton Avenue", // optional
+        addressLine1: "1500 Warburton Avenue", // optional
+        addressLine2: "",
         city: "Santa Clara", // optional
         state: "CA",
         postalCode: "95050",
@@ -136,7 +137,8 @@ export const PERSONA_WIDGET_DATA_PROPS: WidgetPersonaDataProps = {
         phone: "3423425678", // optional
         address: {
           // optional
-          street: "90th Street", // optional
+          addressLine1: "90th Street", // optional
+          addressLine2: "",
           city: "Daly City", // optional
           state: "CA",
           postalCode: "94015",

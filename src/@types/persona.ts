@@ -35,7 +35,7 @@ export type WidgetPersonaDataProps = {
       name: string;
     };
     financingApplicationInfo: {
-      loanAmount: string; // Amount for which the offers will be fetched
+      loanAmount: number; // Amount for which the offers will be fetched
       loanPurpose: LoanPurpose;
     };
     consumerInfo: {
@@ -46,6 +46,8 @@ export type WidgetPersonaDataProps = {
       email: string; // Recipient Email to which Offers will be fetched
       phone?: string; // Recipient Phone to which Offers will be fetched
       address?: {
+        addressLine1?: string;
+        addressLine2?: string;
         street?: string;
         city?: string;
         state: string;
@@ -56,14 +58,14 @@ export type WidgetPersonaDataProps = {
     businessInfo: {
       // Business info providing the service
       id?: string;
-      taxIdentifcationNumber?: string;
       logoUrl?: string;
       businessName: string;
       phone?: string;
       industry: string;
       type: string;
       address?: {
-        street?: string;
+        addressLine1?: string;
+        addressLine2?: string;
         city?: string;
         state: string;
         postalCode: string;
@@ -77,7 +79,8 @@ export type WidgetPersonaDataProps = {
         email: string;
         phone?: string;
         address?: {
-          street?: string;
+          addressLine1?: string;
+          addressLine2?: string;
           city?: string;
           state: string;
           postalCode: string;
@@ -104,4 +107,13 @@ export type WidgetEventProps = {
 };
 
 export type IntuitWidgetProps = WidgetPersonaDataProps &
-  WidgetEventProps & { bearerToken: string; offerType: string };
+  WidgetEventProps & {
+    bearerToken: string;
+    offerType: string;
+    env: string; // E2E or PRD
+    headerInfo: {
+      // This object will be passed in headers for tracking
+      "X-<isv>-CorrelationId": string; // correlation Id to track the event in source system
+      "X-Merchant-Id"?: string;
+    };
+  };
