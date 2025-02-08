@@ -85,6 +85,7 @@ export const LOAN_PURPOSE_TYPES_DROPDOWN = [
 ];
 
 const PERSONA_WIDGET_DATA_PROPS: WidgetPersonaDataProps = {
+  offerType: "",
   data: {
     partnerInfo: {
       id: "Test_Partner_01", // ID to identify the partner (ISV)
