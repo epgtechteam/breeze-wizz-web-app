@@ -91,7 +91,7 @@ export const PERSONA_WIDGET_DATA_PROPS: WidgetPersonaDataProps = {
       name: "Test Partner",
     },
     financingApplicationInfo: {
-      loanAmount: "10000", // Amount for which the offers will be fetched
+      loanAmount: 10000, // Amount for which the offers will be fetched
       loanPurpose: LOAN_PURPOSE.HOME_IMPROVEMENT,
     },
     consumerInfo: {
