@@ -1,11 +1,7 @@
-// pages/index.js
+// Client component
+"use client";
+import Home from "./home/page";
 
-import Banner from "./components/Banner";
-
-export default function Home() {
-  return (
-    <div className="h-screen font-sans bg-gray-50">
-      <Banner />
-    </div>
-  );
+export default function Main() {
+    return Home();
 }
