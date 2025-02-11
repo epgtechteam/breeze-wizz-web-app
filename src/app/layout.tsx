@@ -41,6 +41,17 @@ export default function RootLayout({
                                   width: "100%",
                                   "border-color": "red",
                               },
+                              props: {
+                                  onSuccess: (type, message, additionalInfo) => {
+                                    console.log(type, message, additionalInfo);
+                                  },
+                                  onError: (type, errorCode, message, additionalInfo) => {
+                                    console.log(type, errorCode, message, additionalInfo);
+                                  },
+                                  onEvent: (type, message, additionalInfo) => {
+                                    console.log(type, message, additionalInfo);
+                                  }
+                              }
                           })
                         )();
                         globalThis.IntuitWebAppExperience = widget;
