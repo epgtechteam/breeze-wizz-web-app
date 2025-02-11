@@ -34,6 +34,7 @@ function WidgetContainer({ onWidgetLoad, token, widgetDataProps, offerType }) {
   const onEvent = (type, message, additionalInfo) => {
     console.log(type, message, additionalInfo);
   };
+  
   const widgetProps = {
     onSuccess,
     onError,
