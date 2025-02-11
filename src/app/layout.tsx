@@ -34,7 +34,7 @@ export default function RootLayout({
                           async () => widget.init({
                               namespace: "embedded-financing",
                               url: new URL(
-                                  "https://financing-e2e.app.intuit.com/embedded-financing"
+                                  "https://financing-e2e.app.intuit.com/embedded-financing?darwinPackageVersion=3.2.0-alpha.73bf954&driToken=eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJhdWQiOiJjay1pbnRlcm5hbCIsImNyZWF0ZWRfYnkiOiJlbnYtdG9vbCIsImRhdGEiOnsiZGVwbG95X3NlZ21lbnQiOiJnai1pbnR1aXQtZGVtby1idyJ9LCJlbnYiOiJDa1Rlc3RTZWdtZW50IiwiZXhwIjoxNzQwNDk5NTA4LCJpYXQiOjE3MzkyOTk1MDgsImlzcyI6ImVudi10b29sIiwianRpIjoiYzMwMWI5Y2QtYmZhYy00OTU5LWFjY2EtNWM1MDA1NDk0ODY5In0."
                               ),
                               style: {
                                   height: "100%",
