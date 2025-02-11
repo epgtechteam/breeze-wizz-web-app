@@ -36,9 +36,9 @@ function WidgetContainer({ onWidgetLoad, token, widgetDataProps, offerType }) {
   };
   
   const widgetProps = {
-    onSuccess,
-    onError,
-    onEvent,
+    // onSuccess,
+    // onError,
+    // onEvent,
     bearerToken: token,
     env: process.env.NODE_ENV === "production" ? "PROD" : "E2E",
     headerInfo: {
