@@ -100,7 +100,7 @@ export const PERSONA_WIDGET_DATA_PROPS: WidgetPersonaDataProps = {
       firstName: "Marc",
       lastName: "Thompson",
       email: "marc_thompson@gmail.com", // Recipient Email to which Offers will be fetched
-      phone: "1231231234", //optional // Recipient Phone to which Offers will be fetched
+      phone: "123-123-1234", //optional // Recipient Phone to which Offers will be fetched
       address: {
         // optional
         addressLine1: "S Livermore Ave",
@@ -116,7 +116,7 @@ export const PERSONA_WIDGET_DATA_PROPS: WidgetPersonaDataProps = {
       id: "Test_Business_01", // optional
       logoUrl: "https://www.google.com", // optional
       businessName: "Rocket Associates & Co.",
-      phone: "1234567890", // optional
+      phone: "123-456-7890", // optional
       industry: "Real Estate",
       type: "Small Business",
       address: {
@@ -134,7 +134,7 @@ export const PERSONA_WIDGET_DATA_PROPS: WidgetPersonaDataProps = {
         firstName: "James",
         lastName: "Henry",
         email: "james_henry@gmail.com",
-        phone: "3423425678", // optional
+        phone: "342-342-5678", // optional
         address: {
           // optional
           addressLine1: "90th Street", // optional

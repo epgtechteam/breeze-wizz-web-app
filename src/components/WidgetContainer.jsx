@@ -34,19 +34,22 @@ function WidgetContainer({ onWidgetLoad, token, widgetDataProps, offerType }) {
   const onEvent = (type, message, additionalInfo) => {
     console.log(type, message, additionalInfo);
   };
+  
   const widgetProps = {
     onSuccess,
     onError,
     onEvent,
     bearerToken: token,
-    env: process.env.NODE_ENV === "production" ? "PRD" : "E2E",
+    env: process.env.NODE_ENV === "production" ? "PROD" : "E2E",
     headerInfo: {
-      "X-BreezeWizz-CorrelationId": "123456789",
-      "X-Merchant-Id": "123",
+      xCorrelationId: "123456789",
+      xMerchantId: "123",
+      xPartnerId: "111-partner-ID",
     },
     offerType,
     data: widgetDataProps.data,
   };
+  console.log(widgetProps);
 
   const loadWidget = async () => {
     setLoading(true);
