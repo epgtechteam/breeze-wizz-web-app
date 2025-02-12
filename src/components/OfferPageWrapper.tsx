@@ -1,23 +1,26 @@
 "use client";
 
 import {
-  PERSONA_TYPES_DROPDOWN,
   LOAN_PURPOSE_TYPES_DROPDOWN,
+  PERSONA_TYPES_DROPDOWN,
 } from "@/constants/persona";
 import DropdownWithLabel from "./DropdownWithLabel";
-import InputWithLabel from "./InputWithLabel";
 import WidgetContainer from "./WidgetContainer";
 import { useState } from "react";
 import ApplicationSteps from "./ApplicationSteps";
-import ActionButton from "./ActionButton";
 import { LoanPurpose, WidgetPersonaDataProps } from "@/@types/persona";
 import { getPIIPropsBasedOnOfferType } from "@/utils/offerUtils";
+import EstimateDetails from "./EstimateDetails";
+import OfferIframePlaceholder from "./OfferIframePlaceholder";
+import ActionButton from "./ActionButton";
+import InputWithLabel from "./InputWithLabel";
+import { Option } from "@/@types/dropdown";
+import styles from "./OfferPageWrapper.module.css";
 
 export default function OfferPageWrapper({ token }: { token: string }) {
-  const [isWidgetLoaded, setIsWidgetLoaded] = useState(false);
   const [shouldLoadWidget, setShouldLoadWidget] = useState(false);
-  const [offerType, setOfferType] = useState<string>("");
-  const [loanPurpose, setLoanPurpose] = useState<LoanPurpose>();
+  const [offerType, setOfferType] = useState<Option>();
+  const [loanPurpose, setLoanPurpose] = useState<Option>();
   const [amount, setAmount] = useState<number>(0);
   const [widgetDataProps, setWidgetDataProps] =
     useState<WidgetPersonaDataProps>();
@@ -26,9 +29,9 @@ export default function OfferPageWrapper({ token }: { token: string }) {
     if (offerType && loanPurpose && amount) {
       // this triggers a rerender and the widget is reloaded
       const piiData = getPIIPropsBasedOnOfferType(
-        offerType,
+        offerType.value,
         amount,
-        loanPurpose
+        loanPurpose.value as LoanPurpose
       );
       setWidgetDataProps(piiData);
       return true;
@@ -36,7 +39,9 @@ export default function OfferPageWrapper({ token }: { token: string }) {
     return false;
   };
   return (
-    <div className="h-screen m-auto text-center p-10 flex flex-col align-items-center">
+    <div
+      className={`${styles.pageWrapper} h-screen m-auto text-center p-10 flex flex-col align-items-center`}
+    >
       <div className="flex flex-wrap items-end">
         <DropdownWithLabel
           label="Select Offer Type"
@@ -44,35 +49,57 @@ export default function OfferPageWrapper({ token }: { token: string }) {
           onSelect={(val) => {
             setOfferType(val);
           }}
+          selectedValue={offerType}
+          className="mr-10 mt-5"
         />
-        <DropdownWithLabel
-          label="Loan Purpose"
-          options={LOAN_PURPOSE_TYPES_DROPDOWN}
-          onSelect={(val: LoanPurpose) => setLoanPurpose(val)}
-        />
-        <InputWithLabel
-          label="Request Amount"
-          onChange={(val) => setAmount(val)}
-        />
-        <ActionButton
-          onClick={() => {
-            if (validateInputs()) {
-              setShouldLoadWidget(true);
-            }
-          }}
-        />
+        {shouldLoadWidget && (
+          <>
+            <DropdownWithLabel
+              label="Loan Purpose"
+              options={LOAN_PURPOSE_TYPES_DROPDOWN}
+              onSelect={(val: Option) => setLoanPurpose(val)}
+              selectedValue={loanPurpose}
+              className="mr-10 mt-5"
+            />
+            <InputWithLabel
+              label="Request Amount"
+              value={`${amount}`}
+              onChange={(val) => setAmount(val)}
+              className="mr-10 mt-5"
+            />
+            <ActionButton
+              onClick={() => {
+                if (validateInputs()) {
+                  setShouldLoadWidget(true);
+                }
+              }}
+            />
+          </>
+        )}
+      </div>
+      <div>
+        <EstimateDetails />
       </div>
       <div className={`relative w-full mt-10`}>
-        {shouldLoadWidget && (
+        {shouldLoadWidget ? (
           <WidgetContainer
-            onWidgetLoad={() => setIsWidgetLoaded(true)}
             token={token}
             widgetDataProps={widgetDataProps}
             offerType={offerType}
           />
+        ) : (
+          <OfferIframePlaceholder
+            setAmount={setAmount}
+            setLoanPurpose={setLoanPurpose}
+            onContinueClick={() => {
+              if (validateInputs()) {
+                setShouldLoadWidget(true);
+              }
+            }}
+          />
         )}
       </div>
-      {isWidgetLoaded && <ApplicationSteps />}
+      <ApplicationSteps />
     </div>
   );
 }
