@@ -1,31 +1,31 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { Option } from "@/@types/dropdown";
 
-interface Option {
-  key: string;
-  label: string;
-  value: string;
-}
 interface DropdownProps {
   label: string;
   options: Option[];
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onSelect: (val: any) => void;
+  selectedValue?: Option;
+  className?: string;
 }
 const DropdownWithLabel: React.FC<DropdownProps> = ({
   label,
   options,
   onSelect,
+  selectedValue,
+  className = "",
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState<Option>();
+  const [selected, setSelected] = useState<Option | undefined>(selectedValue);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const handleSelect = (option: Option) => {
     setSelected(option);
     setIsOpen(false);
-    onSelect(option.value);
+    onSelect(option);
   };
 
   const handleOutsideClick = (event: MouseEvent) => {
@@ -46,7 +46,7 @@ const DropdownWithLabel: React.FC<DropdownProps> = ({
   }, []);
 
   return (
-    <div ref={dropdownRef} className="w-64 relative text-left mr-10">
+    <div ref={dropdownRef} className={`${className} w-64 relative text-left`}>
       <label className="block text-sm font-medium text-gray-700 mb-1">
         {label}
       </label>

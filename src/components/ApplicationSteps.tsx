@@ -23,11 +23,11 @@ const STEPS = [
 ];
 export default function ApplicationSteps() {
   return (
-    <div className="pt-10 mt-10 pb-60 m-auto">
+    <div className="pt-10 mt-10 pb-60 m-auto flex flex-col">
       <p className={styles.header}>Easy apply in 3 steps</p>
-      <div className="flex mt-20">
+      <div className="flex flex-wrap justify-center mt-10">
         {STEPS.map((step, index) => (
-          <div key={index} className="w-[280] mr-5">
+          <div key={index} className="w-[280] mr-5 mt-10">
             <div>
               <Image
                 priority

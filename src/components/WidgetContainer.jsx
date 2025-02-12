@@ -13,15 +13,10 @@ const renderWidget = async (widget) => {
   }
 };
 
-function WidgetContainer({ onWidgetLoad, token, widgetDataProps, offerType }) {
+function WidgetContainer({ token, widgetDataProps, offerType }) {
   const widgetContainerId = "widget-container";
   const widget = globalThis?.IntuitWebAppExperience;
   const [loading, setLoading] = useState(true);
-
-  const handleIframeLoad = () => {
-    setLoading(false); // Hide loader when iframe is loaded
-    onWidgetLoad(); // Trigger any external callback if needed
-  };
 
   const onSuccess = (type, message, additionalInfo) => {
     console.log(type, message, additionalInfo);
@@ -34,7 +29,7 @@ function WidgetContainer({ onWidgetLoad, token, widgetDataProps, offerType }) {
   const onEvent = (type, message, additionalInfo) => {
     console.log(type, message, additionalInfo);
   };
-  
+
   const widgetProps = {
     // onSuccess,
     // onError,
@@ -46,7 +41,7 @@ function WidgetContainer({ onWidgetLoad, token, widgetDataProps, offerType }) {
       xMerchantId: "123",
       xPartnerId: "111-partner-ID",
     },
-    offerType,
+    offerType: offerType.value,
     data: widgetDataProps.data,
   };
   console.log(widgetProps);
@@ -60,7 +55,7 @@ function WidgetContainer({ onWidgetLoad, token, widgetDataProps, offerType }) {
       console.error("Error loading widget: ", error);
     }
     setTimeout(() => {
-      handleIframeLoad();
+      setLoading(false);
     }, 1000);
   };
 
@@ -80,7 +75,7 @@ function WidgetContainer({ onWidgetLoad, token, widgetDataProps, offerType }) {
       )}
       <div
         id={widgetContainerId}
-        className={`h-[700px] flex flex-col w-full`}
+        className={`h-[600px] flex flex-col w-full`}
       ></div>
     </div>
   );
