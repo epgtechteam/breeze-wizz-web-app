@@ -18,10 +18,10 @@ export const getPIIPropsBasedOnOfferType = (
       props.data.consumerInfo.email = "johndoe@somebusiness.com";
       break;
     case PERSONA_TYPES.B2B_QBO_TERM_LOAN:
-      // any custom email to be added here
+      props.data.consumerInfo.email = "macydoe@somebusiness.com";
       break;
     case PERSONA_TYPES.B2B_NONQBO_CREDIT_CARD:
-      // any custom email to be added here
+      props.data.consumerInfo.email = "johnnydoe@somebusiness.com";
       break;
     case PERSONA_TYPES.B2B_NONQBO_BUSINESS_LOAN:
       props.data.consumerInfo.email = "jane_doe@funbusiness.com";
