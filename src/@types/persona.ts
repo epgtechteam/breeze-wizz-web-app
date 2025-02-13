@@ -114,8 +114,8 @@ export type IntuitWidgetProps = WidgetPersonaDataProps &
     env: string; // E2E or PRD
     headerInfo: {
       // This object will be passed in headers for tracking
-      xCorrelationId: string;
-      xMerchantId: string;
+      xCorrelationid: string;
       xPartnerId: string;
+      xMerchantid: string;
     };
   };

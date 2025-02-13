@@ -37,9 +37,9 @@ function WidgetContainer({ token, widgetDataProps, offerType }) {
     bearerToken: token,
     env: process.env.NODE_ENV === "production" ? "PROD" : "E2E",
     headerInfo: {
-      xCorrelationId: "123456789",
-      xMerchantId: "123",
-      xPartnerId: "111-partner-ID",
+      xCorrelationid: "123456789",
+      xPartnerId: "123",
+      xMerchantid: "111-partner-ID",
     },
     offerType: offerType.value,
     data: widgetDataProps.data,
