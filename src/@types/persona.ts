@@ -60,6 +60,7 @@ export type WidgetPersonaDataProps = {
       id?: string;
       logoUrl?: string;
       businessName: string;
+      email:string;
       phone?: string;
       industry: string;
       type: string;

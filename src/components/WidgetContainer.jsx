@@ -44,7 +44,6 @@ function WidgetContainer({ token, widgetDataProps, offerType }) {
     offerType: offerType.value,
     data: widgetDataProps.data,
   };
-  console.log(widgetProps);
 
   const loadWidget = async () => {
     setLoading(true);
