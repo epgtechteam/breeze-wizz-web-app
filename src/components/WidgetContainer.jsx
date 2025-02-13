@@ -74,7 +74,7 @@ function WidgetContainer({ token, widgetDataProps, offerType }) {
       )}
       <div
         id={widgetContainerId}
-        className={`h-[600px] flex flex-col w-full`}
+        className={`h-[1000px] flex flex-col w-full`}
       ></div>
     </div>
   );
