@@ -87,62 +87,57 @@ export const LOAN_PURPOSE_TYPES_DROPDOWN = [
 export const PERSONA_WIDGET_DATA_PROPS: WidgetPersonaDataProps = {
   data: {
     partnerInfo: {
-      id: "Test_Partner_01", // ID to identify the partner (ISV)
-      name: "Test Partner",
+      id: "1",
+      name: "Awesome ISV partner",
     },
     financingApplicationInfo: {
-      loanAmount: 10000, // Amount for which the offers will be fetched
-      loanPurpose: LOAN_PURPOSE.HOME_IMPROVEMENT,
+      loanAmount: 20000.0,
+      loanPurpose: "HOME_IMPROVEMENT",
     },
     consumerInfo: {
-      // // Recipient Info for which Offers will be fetched
-      id: "Test_Consumer_01", // optional
-      firstName: "Marc",
-      lastName: "Thompson",
-      email: "marc_thompson@gmail.com", // Recipient Email to which Offers will be fetched
-      phone: "123-123-1234", //optional // Recipient Phone to which Offers will be fetched
+      id: "123",
+      firstName: "John",
+      lastName: "Doe",
+      email: "john.doe@example.com",
+      phone: "123-456-7890",
       address: {
-        // optional
-        addressLine1: "S Livermore Ave",
+        addressLine1: "123 Main St",
         addressLine2: "",
-        city: "Livermore", // optional
-        state: "CA",
-        postalCode: "94550",
-        country: "United States",
+        city: "Anytown",
+        state: "Anystate",
+        postalCode: "12345",
+        country: "USA",
       },
     },
     businessInfo: {
-      // Business info providing the service
-      id: "Test_Business_01", // optional
-      logoUrl: "https://www.google.com", // optional
-      businessName: "Rocket Associates & Co.",
-      phone: "123-456-7890", // optional
-      industry: "Real Estate",
-      type: "Small Business",
+      id: "456",
+      logoUrl: "https://example.com/logo.png",
+      businessName: "Business Name",
+      email: "contact@business.com",
+      phone: "987-654-3210",
+      industry: "INTERIOR_DESIGN",
+      type: "LIMITED_LIABILITY_COMPANY",
       address: {
-        // optional
-        addressLine1: "1500 Warburton Avenue", // optional
+        addressLine1: "456 Business Blvd",
         addressLine2: "",
-        city: "Santa Clara", // optional
-        state: "CA",
-        postalCode: "95050",
-        country: "United States",
+        city: "Businesstown",
+        state: "Businessstate",
+        postalCode: "54321",
+        country: "USA",
       },
       ownerInfo: {
-        // Merchant Personal Information
-        id: "Test_Owner_01", // optional
-        firstName: "James",
-        lastName: "Henry",
-        email: "james_henry@gmail.com",
-        phone: "342-342-5678", // optional
+        id: "789",
+        email: "owner@business.com",
+        firstName: "Jane",
+        lastName: "Smith",
+        phone: "112-233-4455",
         address: {
-          // optional
-          addressLine1: "90th Street", // optional
+          addressLine1: "789 Owner Ave",
           addressLine2: "",
-          city: "Daly City", // optional
-          state: "CA",
-          postalCode: "94015",
-          country: "United States",
+          city: "Ownertown",
+          state: "Ownerstate",
+          postalCode: "67890",
+          country: "USA",
         },
       },
     },

@@ -35,7 +35,6 @@ export async function GET() {
       { status: 500 }
     );
   }
-  console.log("API GET CALL");
   
   const data = await response.json();
   return NextResponse.json({ token: data.access_token });

@@ -12,14 +12,16 @@ async function getBearerToken() {
       return { error: "Missing credentials", status: 500 };
     }
 
-    const credentials = `${clientID}:${clientSecret}`;
+    // const credentials = `${clientID}:${clientSecret}`;
     const body = new URLSearchParams();
     body.append("grant_type", "client_credentials");
-    body.append("scope", "com.intuit.quickbooks.accounting");
+    body.append("scope", "lending.offers.test");
+    body.append("client_id", clientID);
+    body.append("client_secret", clientSecret);
 
     const options = {
       headers: {
-        Authorization: "Basic " + Buffer.from(credentials).toString("base64"),
+        // Authorization: "Basic " + Buffer.from(credentials).toString("base64"),
         "Content-Type": "application/x-www-form-urlencoded",
       },
       body,
@@ -27,7 +29,7 @@ async function getBearerToken() {
     };
 
     const response = await fetch(
-      `https://oauth-sandbox.platform.intuit.com/oauth2/v1/tokens/bearer`,
+      `https://oauth-e2e.platform.intuit.com/oauth2/v1/tokens/bearer`,
       options
     );
 
@@ -51,7 +53,6 @@ async function getBearerToken() {
 
 export default async function OffersPage() {
   const { status, token } = await getBearerToken();
-  console.log(token);
 
   if (status === 200 && token) {
     return <OfferPageWrapper token={token} />;
