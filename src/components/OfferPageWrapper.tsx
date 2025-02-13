@@ -7,7 +7,7 @@ import {
 import DropdownWithLabel from "./DropdownWithLabel";
 import WidgetContainer from "./WidgetContainer";
 import { useState } from "react";
-import ApplicationSteps from "./ApplicationSteps";
+// import ApplicationSteps from "./ApplicationSteps";
 import { LoanPurpose, WidgetPersonaDataProps } from "@/@types/persona";
 import { getPIIPropsBasedOnOfferType } from "@/utils/offerUtils";
 import EstimateDetails from "./EstimateDetails";
@@ -40,9 +40,9 @@ export default function OfferPageWrapper({ token }: { token: string }) {
   };
   return (
     <div
-      className={`${styles.pageWrapper} h-screen m-auto text-center p-10 flex flex-col align-items-center`}
+      className={`${styles.pageWrapper} h-screen m-auto text-center flex flex-col align-items-center`}
     >
-      <div className="flex flex-wrap items-end">
+      <div className="flex flex-wrap items-end pl-10">
         <DropdownWithLabel
           label="Select Offer Type"
           options={PERSONA_TYPES_DROPDOWN}
@@ -99,7 +99,7 @@ export default function OfferPageWrapper({ token }: { token: string }) {
           />
         )}
       </div>
-      <ApplicationSteps />
+      {/* <ApplicationSteps /> */}
     </div>
   );
 }

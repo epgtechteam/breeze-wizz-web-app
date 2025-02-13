@@ -12,6 +12,8 @@ async function getBearerToken() {
       return { error: "Missing credentials", status: 500 };
     }
 
+    
+
     // const credentials = `${clientID}:${clientSecret}`;
     const body = new URLSearchParams();
     body.append("grant_type", "client_credentials");
@@ -53,7 +55,6 @@ async function getBearerToken() {
 
 export default async function OffersPage() {
   const { status, token } = await getBearerToken();
-
   if (status === 200 && token) {
     return <OfferPageWrapper token={token} />;
   } else {
