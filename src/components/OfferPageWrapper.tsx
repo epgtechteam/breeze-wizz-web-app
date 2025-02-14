@@ -22,6 +22,7 @@ export default function OfferPageWrapper({ token }: { token: string }) {
   const [offerType, setOfferType] = useState<Option>();
   const [loanPurpose, setLoanPurpose] = useState<Option>();
   const [amount, setAmount] = useState<number>(0);
+  const [estimateAmount, setEstimateAmount] = useState<number>(0);
   const [widgetDataProps, setWidgetDataProps] =
     useState<WidgetPersonaDataProps>();
 
@@ -33,6 +34,7 @@ export default function OfferPageWrapper({ token }: { token: string }) {
         amount,
         loanPurpose.value as LoanPurpose
       );
+      setEstimateAmount(amount);
       setWidgetDataProps(piiData);
       return true;
     }
@@ -40,7 +42,7 @@ export default function OfferPageWrapper({ token }: { token: string }) {
   };
   return (
     <div
-      className={`${styles.pageWrapper} h-screen m-auto text-center flex flex-col align-items-center`}
+      className={`${styles.pageWrapper} m-auto text-center flex flex-col align-items-center`}
     >
       <div className="flex flex-wrap items-end pl-10">
         <DropdownWithLabel
@@ -78,9 +80,9 @@ export default function OfferPageWrapper({ token }: { token: string }) {
         )}
       </div>
       <div>
-        <EstimateDetails />
+        <EstimateDetails estimateAmount={estimateAmount} />
       </div>
-      <div className={`relative w-full mt-10`}>
+      <div className={`relative w-full mt-10 mb-10 px-10`}>
         {shouldLoadWidget ? (
           <WidgetContainer
             token={token}

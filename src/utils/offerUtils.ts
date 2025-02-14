@@ -9,7 +9,8 @@ export const getPIIPropsBasedOnOfferType = (
   const props = { ...PERSONA_WIDGET_DATA_PROPS };
   switch (offerType) {
     case PERSONA_TYPES.B2C_CK_PERSONAL_LOAN:
-      props.data.consumerInfo.email = "lbetest+control+1730228517655+iamtestpass@creditkarma.com";
+      props.data.consumerInfo.email =
+        "lbetest+control+1730228517655+iamtestpass@creditkarma.com";
       break;
     case PERSONA_TYPES.B2C_CK_CREDIT_CARD:
       props.data.consumerInfo.email = "janedoe@abc.com";
@@ -32,4 +33,13 @@ export const getPIIPropsBasedOnOfferType = (
   props.data.financingApplicationInfo.loanAmount = loanAmount;
   props.data.financingApplicationInfo.loanPurpose = loanPurpose;
   return props;
+};
+
+export const formatUSD = (amount: number = 0, decimals: number = 0): string => {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  }).format(amount);
 };

@@ -19,7 +19,7 @@ const OfferIframePlaceholder = ({
   onContinueClick: () => void;
 }) => {
   return (
-    <div className="h-[600px] flex flex-col w-full items-center justify-center bg-[#ECEEF1] mt-10 px-20">
+    <div className="h-[600px] flex flex-col w-full items-center justify-center bg-[#ECEEF1] border-2 border-light-gray">
       <div>
         <div>
           <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight sm:leading-snug md:leading-normal lg:leading-relaxed xl:leading-relaxed text-left mb-8">

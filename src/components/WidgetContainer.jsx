@@ -66,7 +66,7 @@ function WidgetContainer({ token, widgetDataProps, offerType }) {
   }, [widgetDataProps]);
 
   return (
-    <div>
+    <div className="border-2 border-light-gray">
       {loading && (
         <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-75 z-10">
           <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500 border-solid"></div>
@@ -74,7 +74,7 @@ function WidgetContainer({ token, widgetDataProps, offerType }) {
       )}
       <div
         id={widgetContainerId}
-        className={`h-[1000px] flex flex-col w-full`}
+        className={`h-[900px] flex flex-col w-full`}
       ></div>
     </div>
   );
