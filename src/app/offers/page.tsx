@@ -33,9 +33,11 @@ async function getBearerToken() {
       headers: {
         // Authorization: "Basic " + Buffer.from(credentials).toString("base64"),
         "Content-Type": "application/x-www-form-urlencoded",
+        "cache-control": "no-cache",
       },
       body,
       method: "POST",
+      cache: 'no-store' as RequestCache
     };
 
     const response = await fetch(API_BASE_URL.OAUTH_URL, options);
