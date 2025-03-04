@@ -44,7 +44,7 @@ export default function OfferPageWrapper({ token }: { token: string }) {
     <div
       className={`${styles.pageWrapper} m-auto text-center flex flex-col align-items-center`}
     >
-      <div className="flex flex-wrap items-end pl-10">
+      <div className="flex flex-wrap items-end lg:pl-10 pl-5">
         <DropdownWithLabel
           label="Select Offer Type"
           options={PERSONA_TYPES_DROPDOWN}
@@ -82,7 +82,7 @@ export default function OfferPageWrapper({ token }: { token: string }) {
       <div>
         <EstimateDetails estimateAmount={estimateAmount} />
       </div>
-      <div className={`relative w-full mt-10 mb-10 px-10`}>
+      <div className={`relative w-full mt-10 mb-10 lg:px-10 px-5`}>
         {shouldLoadWidget ? (
           <WidgetContainer
             token={token}
