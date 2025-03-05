@@ -10,7 +10,7 @@ export const getPIIPropsBasedOnOfferType = (
   switch (offerType) {
     case PERSONA_TYPES.B2C_CK_PERSONAL_LOAN:
       props.data.consumerInfo.email =
-        process.env.CK_TEST_ACCOUNT ?? "lbetest+3+iamtestpass@creditkarma.com";
+        process.env.CK_TEST_ACCOUNT ?? "lbetest+control+1730228517655+iamtestpass@creditkarma.com";
       break;
     case PERSONA_TYPES.B2C_CK_CREDIT_CARD:
       props.data.consumerInfo.email = "janedoe@abc.com";
