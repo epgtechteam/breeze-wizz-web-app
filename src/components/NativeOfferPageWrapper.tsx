@@ -5,10 +5,9 @@ import {
     PERSONA_TYPES_DROPDOWN,
 } from "@/constants/persona";
 import DropdownWithLabel from "./DropdownWithLabel";
-import WidgetContainer from "./WidgetContainer";
 import { useState } from "react";
 // import ApplicationSteps from "./ApplicationSteps";
-import { LoanPurpose, WidgetPersonaDataProps } from "@/@types/persona";
+import { LoanPurpose } from "@epgtechteam/faas-widget-library";
 import { getPIIPropsBasedOnOfferType } from "@/utils/offerUtils";
 import EstimateDetails from "./EstimateDetails";
 import OfferIframePlaceholder from "./OfferIframePlaceholder";
@@ -16,6 +15,11 @@ import ActionButton from "./ActionButton";
 import InputWithLabel from "./InputWithLabel";
 import { Option } from "@/@types/dropdown";
 import styles from "./OfferPageWrapper.module.css";
+import {
+    FinancingPIIData,
+    FinancingType,
+    IntuitFinancing,
+} from "@epgtechteam/faas-widget-library";
 
 export default function OfferPageWrapper({ token }: { token: string }) {
     const [shouldLoadWidget, setShouldLoadWidget] = useState(false);
@@ -23,17 +27,18 @@ export default function OfferPageWrapper({ token }: { token: string }) {
     const [loanPurpose, setLoanPurpose] = useState<Option>();
     const [amount, setAmount] = useState<number>(0);
     const [estimateAmount, setEstimateAmount] = useState<number>(0);
-    const [widgetDataProps, setWidgetDataProps] =
-        useState<WidgetPersonaDataProps>();
+    const [widgetDataProps, setWidgetDataProps] = useState<FinancingPIIData>();
 
     const validateInputs = () => {
         if (offerType && loanPurpose && amount) {
             // this triggers a rerender and the widget is reloaded
-            const piiData = getPIIPropsBasedOnOfferType(
-                offerType.value,
-                amount,
-                loanPurpose.value as LoanPurpose
-            );
+            const piiData = {
+                ...getPIIPropsBasedOnOfferType(
+                    offerType.value,
+                    amount,
+                    loanPurpose.key as LoanPurpose
+                ).data,
+            };
             setEstimateAmount(amount);
             setWidgetDataProps(piiData);
             return true;
@@ -84,10 +89,13 @@ export default function OfferPageWrapper({ token }: { token: string }) {
             </div>
             <div className={`relative w-full mt-10 mb-10 lg:px-10 px-5`}>
                 {shouldLoadWidget ? (
-                    <WidgetContainer
-                        token={token}
-                        widgetDataProps={widgetDataProps}
-                        offerType={offerType}
+                    <IntuitFinancing
+                        bearerToken={token}
+                        data={widgetDataProps}
+                        offerType={offerType?.value as FinancingType}
+                        onError={(error) => console.error(error)}
+                        onEvent={(event) => console.log(event)}
+                        onSuccess={(success) => console.log(success)}
                     />
                 ) : (
                     <OfferIframePlaceholder
@@ -101,7 +109,6 @@ export default function OfferPageWrapper({ token }: { token: string }) {
                     />
                 )}
             </div>
-            {/* <ApplicationSteps /> */}
         </div>
     );
 }
