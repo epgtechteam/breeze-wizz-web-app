@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@epgtechteam/faas-widget-library": "^1.2.4",
+    "@epgtechteam/faas-widget-library": "^1.2.8",
     "lucide-react": "^0.474.0",
     "next": "^15.1.6",
     "react": "^19.0.0",

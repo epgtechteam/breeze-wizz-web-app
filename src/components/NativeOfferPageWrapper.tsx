@@ -88,7 +88,7 @@ export default function OfferPageWrapper({ token }: { token: string }) {
                 <EstimateDetails estimateAmount={estimateAmount} />
             </div>
             <div className={`relative w-full mt-10 mb-10 lg:px-10 px-5`}>
-                {shouldLoadWidget ? (
+                {shouldLoadWidget && widgetDataProps ? (
                     <IntuitFinancing
                         bearerToken={token}
                         data={widgetDataProps}
